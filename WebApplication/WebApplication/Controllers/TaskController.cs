@@ -35,17 +35,18 @@ namespace WebApplication.Controllers
         // GET: Task/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new TaskModel());
         }
 
         // POST: Task/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(TaskModel taskModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                taskModel.TaskId = tasks.Count + 1;
+                tasks.Add(taskModel);
 
                 return RedirectToAction(nameof(Index));
             }
