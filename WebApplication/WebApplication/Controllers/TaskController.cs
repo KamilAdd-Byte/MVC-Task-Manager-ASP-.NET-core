@@ -30,7 +30,8 @@ namespace WebApplication.Controllers
         // GET: Task/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+      
+            return View(tasks.FirstOrDefault(x => x.TaskId == id));
         }
 
         // GET: Task/Create
@@ -53,24 +54,26 @@ namespace WebApplication.Controllers
             }
             catch
             {
-                return View();
+                return View(tasks);
             }
         }
 
         // GET: Task/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(tasks.FirstOrDefault(x => x.TaskId == id));
         }
 
         // POST: Task/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, TaskModel taskModel)
         {
             try
             {
-                // TODO: Add update logic here
+                TaskModel task = tasks.FirstOrDefault(x => x.TaskId == id);
+                task.TaskName = taskModel.TaskName;
+                task.Description = taskModel.Description;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -83,7 +86,8 @@ namespace WebApplication.Controllers
         // GET: Task/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            //tasks.Remove.id;
+            return View(tasks);
         }
 
         // POST: Task/Delete/5
