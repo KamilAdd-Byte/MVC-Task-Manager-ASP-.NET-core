@@ -23,6 +23,7 @@ namespace WebApplication.Controllers
         // GET: Task
         public ActionResult Index()
         {
+            string title = "Simple Task Manager";
             return View(tasks);
         }
 
