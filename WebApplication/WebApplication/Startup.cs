@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Simple_Task_Manager_MVC
+namespace WebApplication
 {
     public class Startup
     {

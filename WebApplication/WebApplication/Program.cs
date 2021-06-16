@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Simple_Task_Manager_MVC
+namespace WebApplication
 {
     public class Program
     {
