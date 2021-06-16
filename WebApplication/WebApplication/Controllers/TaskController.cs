@@ -83,21 +83,22 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Task/Delete/5
+     
         public ActionResult Delete(int id)
         {
-            //tasks.Remove.id;
-            return View(tasks);
+           
+            return View(tasks.FirstOrDefault(x => x.TaskId == id));
         }
 
-        // POST: Task/Delete/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, TaskModel taskModel)
         {
             try
             {
-                // TODO: Add delete logic here
+                TaskModel task = tasks.FirstOrDefault(x => x.TaskId == id);
+                tasks.Remove(task);
 
                 return RedirectToAction(nameof(Index));
             }
