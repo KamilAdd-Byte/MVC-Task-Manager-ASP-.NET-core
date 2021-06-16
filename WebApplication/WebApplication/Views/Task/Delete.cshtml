@@ -1,0 +1,33 @@
+﻿@model WebApplication.Models.TaskModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Usuń zadanie</h2>
+
+<h3>Czy na pewnie chcesz usunąc?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.TaskName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TaskName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+       
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Usuń" class="btn btn-default" /> |
+        <a asp-action="Index">Wróć do listy zadań</a>
+    </form>
+</div>

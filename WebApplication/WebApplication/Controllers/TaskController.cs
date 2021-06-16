@@ -23,52 +23,57 @@ namespace WebApplication.Controllers
         // GET: Task
         public ActionResult Index()
         {
+            string title = "Simple Task Manager";
             return View(tasks);
         }
 
         // GET: Task/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+      
+            return View(tasks.FirstOrDefault(x => x.TaskId == id));
         }
 
         // GET: Task/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new TaskModel());
         }
 
         // POST: Task/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(TaskModel taskModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                taskModel.TaskId = tasks.Count + 1;
+                tasks.Add(taskModel);
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(tasks);
             }
         }
 
         // GET: Task/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(tasks.FirstOrDefault(x => x.TaskId == id));
         }
 
         // POST: Task/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, TaskModel taskModel)
         {
             try
             {
-                // TODO: Add update logic here
+                TaskModel task = tasks.FirstOrDefault(x => x.TaskId == id);
+                task.TaskName = taskModel.TaskName;
+                task.Description = taskModel.Description;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -78,20 +83,22 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Task/Delete/5
+     
         public ActionResult Delete(int id)
         {
-            return View();
+           
+            return View(tasks.FirstOrDefault(x => x.TaskId == id));
         }
 
-        // POST: Task/Delete/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, TaskModel taskModel)
         {
             try
             {
-                // TODO: Add delete logic here
+                TaskModel task = tasks.FirstOrDefault(x => x.TaskId == id);
+                tasks.Remove(task);
 
                 return RedirectToAction(nameof(Index));
             }
