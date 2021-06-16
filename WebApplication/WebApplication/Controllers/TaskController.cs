@@ -4,15 +4,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
     public class TaskController : Controller
     {
+        private static IList<TaskModel> tasks = new List<TaskModel>()
+        {
+            new TaskModel() {TaskId = 1,TaskName = "Nauka C#", Description = "Ucz sie pilnie",Done = false},
+            new TaskModel() {TaskId = 2,TaskName = "Nauka C# i .NET", Description = "Ucz sie pilnie",Done = false},
+            new TaskModel() {TaskId = 3,TaskName = "Nauka MVC ASP .NET", Description = "Ucz sie pilnie",Done = false},
+            new TaskModel() {TaskId = 4,TaskName = "Nauka C#", Description = "Ucz sie pilnie",Done = false},
+            new TaskModel() {TaskId = 5,TaskName = "Nauka C#", Description = "Ucz sie pilnie",Done = false}
+
+        };
+
         // GET: Task
         public ActionResult Index()
         {
-            return View();
+            return View(tasks);
         }
 
         // GET: Task/Details/5
