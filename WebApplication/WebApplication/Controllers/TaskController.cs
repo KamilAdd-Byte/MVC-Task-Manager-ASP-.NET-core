@@ -23,8 +23,7 @@ namespace WebApplication.Controllers
         // GET: Task
         public ActionResult Index()
         {
-            string title = "Simple Task Manager";
-            return View(tasks);
+            return View(tasks.Where(x => !x.Done));
         }
 
         // GET: Task/Details/5
@@ -106,6 +105,15 @@ namespace WebApplication.Controllers
             {
                 return View();
             }
+        }
+
+        // GET: Task/Done/5
+        public ActionResult Done(int id)
+        {
+            TaskModel task = tasks.FirstOrDefault(x => x.TaskId == id);
+            task.Done = true;
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
